@@ -1,7 +1,5 @@
 package parser;
 
-import model.ModelFile;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -20,26 +18,21 @@ public class ParserXML extends DefaultHandler {
     @Override
     public void handler(String path) {
         try {
-            List<String> fileLines = Files.readAllLines(Paths.get(path));
-            for (String fileLine : fileLines) {
-                List<String> list = new ArrayList<>();
-                Matcher matcher = Pattern.compile(REGEX).matcher(fileLine);
-                while (matcher.find()) {
-                    list.add(matcher.group(2));
-                }
-                if (list.size() == 4) {
-                    modelFiles.add(new ModelFile(
-                            list.get(0),
-                            list.get(1),
-                            Integer.parseInt(list.get(2)),
-                            Integer.parseInt(list.get(3))
-                    ));
-                } else {
-                    System.out.println("Формат файла составлен не верно");
-                }
-            }
+            Files.readAllLines(Paths.get(path)).stream()
+                    .map(this::addInnerCollection)
+                    .filter(s -> s.size() == 4)
+                    .forEach(this::addCollection);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private List<String> addInnerCollection(String s) {
+        List<String> list = new ArrayList<>();
+        Matcher matcher = Pattern.compile(REGEX).matcher(s);
+        while (matcher.find()) {
+            list.add(matcher.group(2));
+        }
+        return list;
     }
 }

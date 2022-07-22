@@ -35,4 +35,13 @@ public abstract class DefaultHandler {
                 .sorted(Map.Entry.comparingByValue())
                 .forEach(System.out::println);
     }
+
+    public void addCollection(List<String> list) {
+        modelFiles.add(new ModelFile(
+                list.get(0),
+                list.get(1),
+                Integer.parseInt(list.get(2)),
+                Integer.parseInt(list.get(3))
+        ));
+    }
 }
