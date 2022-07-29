@@ -20,6 +20,16 @@ public abstract class DefaultHandler {
 
     protected abstract void handler(String path);
 
+    public boolean isCorrect(List<String> list) {
+        String strRegex = "^([\"?а-яА-ЯёЁ\\d-\\s,\"?]+)";
+        String intRegex = "(\\d+)";
+
+        return list.get(0).matches(strRegex) &&
+                list.get(1).matches(strRegex) &&
+                list.get(2).matches(intRegex) &&
+                list.get(3).matches(intRegex);
+    }
+
     private void getCityFloorCounts() {
         Map<String, Map<Integer, Long>> map = modelFiles.stream()
                 .collect(Collectors.groupingBy(ModelFile::getCity

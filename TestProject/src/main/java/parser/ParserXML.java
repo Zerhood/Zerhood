@@ -9,7 +9,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ParserXML extends DefaultHandler {
-    private final String REGEX = "(\\\"([-\\dа-яА-ЯёЁ\\s,)(]+)\\\")";
 
     public ParserXML(String path) {
         super(path);
@@ -21,6 +20,7 @@ public class ParserXML extends DefaultHandler {
             Files.readAllLines(Paths.get(path)).stream()
                     .map(this::addInnerCollection)
                     .filter(s -> s.size() == 4)
+                    .filter(this::isCorrect)
                     .forEach(this::addCollection);
         } catch (IOException e) {
             e.printStackTrace();
@@ -29,6 +29,7 @@ public class ParserXML extends DefaultHandler {
 
     private List<String> addInnerCollection(String s) {
         List<String> list = new ArrayList<>();
+        String REGEX = "(\\\"([-\\dа-яА-ЯёЁ\\s,)(]+)\\\")";
         Matcher matcher = Pattern.compile(REGEX).matcher(s);
         while (matcher.find()) {
             list.add(matcher.group(2));

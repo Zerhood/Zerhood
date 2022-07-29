@@ -19,6 +19,7 @@ public class ParserCSV extends DefaultHandler {
                     .map(s -> s.split(";"))
                     .map(Arrays::asList)
                     .filter(s -> s.size() == 4)
+                    .filter(this::isCorrect)
                     .forEach(this::addCollection);
         } catch (IOException e) {
             e.printStackTrace();
