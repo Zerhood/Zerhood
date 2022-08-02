@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <item street="Дальняя улица" house="56" city="Барнаул" floor="2"/>
+    <item street="Большая Октябрьская улица" city="Братск" house="65" floor="5"/>
+    <item city="Балаково" street="Барыши, местечко" floor="2" house="67"/>
+    <item city="Братск" street="7-я Вишнёвая улица" house="49" floor="5"/>
+    <item street="Мостотреста, улица" house="133" floor="4" city="Батайск"/>
+    <item city="Барнаул" street="Дальняя улица" house="56" floor="2"/>
+</root>

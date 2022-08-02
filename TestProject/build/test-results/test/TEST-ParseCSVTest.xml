@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Программа обработки файлов CSV" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-08-02T16:28:03" hostname="DESKTOP-N90FMJV" time="0.035">
+  <properties/>
+  <testcase name="проверка работы с невалидными данными" classname="ParseCSVTest" time="0.031"/>
+  <testcase name="проверка работы c валидными данными" classname="ParseCSVTest" time="0.003"/>
+  <system-out><![CDATA[Формат данных неверный
+city = "city" должна быть строка
+street = "street" должна быть строка
+house = "house" должно быть число
+floor = "floor" должно быть число
+Формат данных неверный
+city = "Барнаул" должна быть строка
+street = "Дальняя улица" должна быть строка
+house = 5,6 должно быть число
+floor = 2 должно быть число
+Формат данных неверный
+city = "Братск" должна быть строка
+street = "Большая Октябрьская улица" должна быть строка
+house = "weqwe" должно быть число
+floor = 5 должно быть число
+Формат данных неверный
+city = 8 должна быть строка
+street = "Барыши, местечко" должна быть строка
+house = 67 должно быть число
+floor = 2 должно быть число
+Формат данных неверный
+city = "city" должна быть строка
+street = "street" должна быть строка
+house = "house" должно быть число
+floor = "floor" должно быть число
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

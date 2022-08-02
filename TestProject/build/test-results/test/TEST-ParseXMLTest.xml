@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Программа обработки файлов XML" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-08-02T16:28:03" hostname="DESKTOP-N90FMJV" time="0.028">
+  <properties/>
+  <testcase name="проверяем файл с данными в одном порядке" classname="ParseXMLTest" time="0.02"/>
+  <testcase name="проверяем файл с некоректными данными" classname="ParseXMLTest" time="0.003"/>
+  <testcase name="проверяем файл с данными в разном порядке" classname="ParseXMLTest" time="0.004"/>
+  <system-out><![CDATA[Формат данных неверный
+city = 67 должна быть строка
+street = Барыши, местечко должна быть строка
+house = Балаково должно быть число
+floor = 2 должно быть число
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

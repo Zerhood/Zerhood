@@ -1,9 +1,17 @@
+import org.xml.sax.SAXException;
 import parser.ParserCSV;
 import parser.ParserXML;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
     private static final String CSV_REGEX = "(.+.csv)";
@@ -17,10 +25,10 @@ public class Main {
                 String input = scanner.nextLine();
                 if (input.equals("exit")) break;
                 if (existFile(input)) {
-                    if (input.matches(CSV_REGEX)) {
-                        new ParserCSV(input);
-                    } else if (input.matches(XML_REGEX)) {
-                        new ParserXML(input);
+                    if (match(CSV_REGEX, input)) {
+                        csvParse(input);
+                    } else if (match(XML_REGEX, input)) {
+                        xmlParse(input);
                     }
                 } else {
                     System.out.println("Ошибка, путь или файл не найдеты.");
@@ -29,7 +37,33 @@ public class Main {
         }
     }
 
+    public static void csvParse(String input) {
+        ParserCSV parserCSV = new ParserCSV();
+        parserCSV.parse(input);
+        parserCSV.getDuplicateCounts();
+        parserCSV.getCityFloorCounts();
+    }
+
+    public static void xmlParse(String input) {
+        try {
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            SAXParser parser = factory.newSAXParser();
+            ParserXML parserXML = new ParserXML();
+            parser.parse(new File(input), parserXML);
+            parserXML.getDuplicateCounts();
+            parserXML.getCityFloorCounts();
+        } catch (ParserConfigurationException | IOException | SAXException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static boolean existFile(String path) {
         return Files.exists(Paths.get(path));
+    }
+
+    public static boolean match(String regex, String input) {
+        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(input);
+        return matcher.find();
     }
 }

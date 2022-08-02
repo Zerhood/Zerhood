@@ -2,16 +2,16 @@ package model;
 
 import java.util.Objects;
 
-public class ModelFile {
+public class Address {
     private String city;
     private String street;
     private int house;
     private int floor;
 
-    public ModelFile(String city,
-                     String street,
-                     int house,
-                     int floor) {
+    public Address(String city,
+                   String street,
+                   int house,
+                   int floor) {
         this.city = city;
         this.street = street;
         this.house = house;
@@ -37,12 +37,12 @@ public class ModelFile {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ModelFile)) return false;
-        ModelFile modelFile = (ModelFile) o;
-        return house == modelFile.house &&
-                floor == modelFile.floor &&
-                Objects.equals(city, modelFile.city) &&
-                Objects.equals(street, modelFile.street);
+        if (!(o instanceof Address)) return false;
+        Address address = (Address) o;
+        return house == address.house &&
+                floor == address.floor &&
+                Objects.equals(city, address.city) &&
+                Objects.equals(street, address.street);
     }
 
     @Override
