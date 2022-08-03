@@ -7,9 +7,6 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class ParserXML extends DefaultHandler implements ModelClass {
 
@@ -54,26 +51,9 @@ public class ParserXML extends DefaultHandler implements ModelClass {
         }
     }
 
+    @Override
     public List<Address> getAddresses() {
         return addresses;
-    }
-
-    @Override
-    public void getCityFloorCounts() {
-        Map<String, Map<Integer, Long>> map = getAddresses().stream()
-                .collect(Collectors.groupingBy(Address::getCity
-                        , Collectors.groupingBy(Address::getFloor, Collectors.counting())));
-        map.entrySet().forEach(System.out::println);
-    }
-
-    @Override
-    public void getDuplicateCounts() {
-        Map<Address, Long> map = getAddresses().stream()
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-        map.entrySet().stream()
-                .filter(s -> s.getValue() > 1)
-                .sorted(Map.Entry.comparingByValue())
-                .forEach(System.out::println);
     }
 
     @Override

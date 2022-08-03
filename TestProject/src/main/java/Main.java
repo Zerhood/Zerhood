@@ -1,6 +1,7 @@
 import org.xml.sax.SAXException;
 import parser.ParserCSV;
 import parser.ParserXML;
+import result.PrintResult;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -40,8 +41,9 @@ public class Main {
     public static void csvParse(String input) {
         ParserCSV parserCSV = new ParserCSV();
         parserCSV.parse(input);
-        parserCSV.getDuplicateCounts();
-        parserCSV.getCityFloorCounts();
+        PrintResult printResult = new PrintResult(parserCSV.getAddresses());
+        printResult.getDuplicateCounts();
+        printResult.getCityFloorCounts();
     }
 
     public static void xmlParse(String input) {
@@ -50,8 +52,9 @@ public class Main {
             SAXParser parser = factory.newSAXParser();
             ParserXML parserXML = new ParserXML();
             parser.parse(new File(input), parserXML);
-            parserXML.getDuplicateCounts();
-            parserXML.getCityFloorCounts();
+            PrintResult printResult = new PrintResult(parserXML.getAddresses());
+            printResult.getDuplicateCounts();
+            printResult.getCityFloorCounts();
         } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
         }

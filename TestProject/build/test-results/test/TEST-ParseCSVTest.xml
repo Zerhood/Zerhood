@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Программа обработки файлов CSV" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-08-02T16:28:03" hostname="DESKTOP-N90FMJV" time="0.035">
+<testsuite name="Программа обработки файлов CSV" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-08-03T06:28:31" hostname="DESKTOP-N90FMJV" time="0.052">
   <properties/>
-  <testcase name="проверка работы с невалидными данными" classname="ParseCSVTest" time="0.031"/>
-  <testcase name="проверка работы c валидными данными" classname="ParseCSVTest" time="0.003"/>
+  <testcase name="проверка работы с невалидными данными" classname="ParseCSVTest" time="0.041"/>
+  <testcase name="проверка работы c валидными данными" classname="ParseCSVTest" time="0.01"/>
   <system-out><![CDATA[Формат данных неверный
 city = "city" должна быть строка
 street = "street" должна быть строка
