@@ -41,9 +41,8 @@ public class Main {
     public static void csvParse(String input) {
         ParserCSV parserCSV = new ParserCSV();
         parserCSV.parse(input);
-        PrintResult printResult = new PrintResult(parserCSV.getAddresses());
-        printResult.getDuplicateCounts();
-        printResult.getCityFloorCounts();
+        PrintResult.getDuplicateCounts(parserCSV.getAddresses());
+        PrintResult.getCityFloorCounts(parserCSV.getAddresses());
     }
 
     public static void xmlParse(String input) {
@@ -52,9 +51,8 @@ public class Main {
             SAXParser parser = factory.newSAXParser();
             ParserXML parserXML = new ParserXML();
             parser.parse(new File(input), parserXML);
-            PrintResult printResult = new PrintResult(parserXML.getAddresses());
-            printResult.getDuplicateCounts();
-            printResult.getCityFloorCounts();
+            PrintResult.getDuplicateCounts(parserXML.getAddresses());
+            PrintResult.getCityFloorCounts(parserXML.getAddresses());
         } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
         }
